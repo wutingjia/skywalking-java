@@ -13,6 +13,7 @@ Release Notes.
 * Support HikariCP Connection pool metrics collecting.
 * Support Dbcp2 Connection pool metrics collecting.
 * Ignore the synthetic constructor created by the agent in the Spring patch plugin.
+* Add Tomcat 10.x plugin
 
 #### Documentation
 * Add link about java agent injector.
