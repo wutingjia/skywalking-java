@@ -18,4 +18,6 @@
 
 home="$(cd "$(dirname $0)"; pwd)"
 
-java -jar ${agent_opts} "-Dskywalking.agent.service_name=tomcat-10.x-scenario" ${home}/../libs/tomcat-10.x-scenario.jar &
+java -jar ${agent_opts} "-Dskywalking.agent.service_name=tomcatclient-10.x-scenario" ${home}/../libs/tomcatclient-10.x-scenario.jar &
+
+java -jar ${agent_opts} "-Dskywalking.agent.service_name=tomcatserver-10.x-scenario" ${home}/../libs/tomcatserver-10.x-scenario.jar &

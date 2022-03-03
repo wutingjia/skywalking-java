@@ -14,12 +14,44 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 segmentItems:
-- serviceName: tomcat-10.x-scenario
-  segmentSize: ge 1
+- serviceName: tomcatclient-10.x-scenario
+  segmentSize: 1
   segments:
   - segmentId: not null
     spans:
-    - operationName: GET:/tomcat-10.x-scenario/case/tomcat-10.x-scenario
+    - operationName: GET:/tomcatclient-10.x-scenario/case/tomcatclient
+      parentSpanId: -1
+      spanId: 0
+      spanLayer: Http
+      startTime: nq 0
+      endTime: nq 0
+      componentId: 2
+      isError: false
+      spanType: Entry
+      peer: ''
+      tags:
+        - { key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient' }
+        - { key: http.method, value: GET }
+    - operationName: /tomcatserver-10.x-scenario/case/tomcat-10.x-scenario
+        parentSpanId: 0
+        spanId: 1
+        spanLayer: Http
+        startTime: nq 0
+        endTime: nq 0
+        componentId: 2
+        isError: false
+        spanType: EXIT
+        peer: localhost:18080
+        tags:
+          - { key: url, value: 'http://localhost:18080/tomcatserver-10.x-scenario/case/tomcat-10.x-scenario' }
+          - { key: http.method, value: GET }
+      skipAnalysis: 'false'
+- serviceName: tomcatserver-10.x-scenario
+  segmentSize: 1
+  segments:
+  - segmentId: not null
+    spans:
+    - operationName: /tomcatserver-10.x-scenario/case/tomcat-10.x-scenario
       parentSpanId: -1
       spanId: 0
       spanLayer: Http
@@ -30,7 +62,12 @@ segmentItems:
       spanType: Entry
       peer: ''
       tags:
-        - { key: url, value: 'http://localhost:8080/tomcat-10.x-scenario/case/tomcat-10.x-scenario' }
+        - { key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient' }
         - { key: http.method, value: GET }
+      refs:
+      - { parentEndpoint: GET:/tomcatclient-10.x-scenario/case/tomcatclient, networkAddress: 'localhost:18080',
+        refType: CrossProcess, parentSpanId: 1, parentTraceSegmentId: not null, parentServiceInstance: not
+        null, parentService: tomcatclient-10.x-scenario, traceId: not null }
       skipAnalysis: 'false'
+
 
