@@ -15,7 +15,7 @@
 # limitations under the License.
 segmentItems:
 - serviceName: tomcatclient-10.x-scenario
-  segmentSize: 1
+  segmentSize: ge 1
   segments:
   - segmentId: not null
     spans:
@@ -25,13 +25,13 @@ segmentItems:
       spanLayer: Http
       startTime: nq 0
       endTime: nq 0
-      componentId: 2
+      componentId: 1
       isError: false
       spanType: Entry
       peer: ''
       tags:
-        - { key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient' }
-        - { key: http.method, value: GET }
+      - { key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient' }
+      - { key: http.method, value: GET }
     - operationName: /tomcatserver-10.x-scenario/case/tomcat-10.x-scenario
         parentSpanId: 0
         spanId: 1
@@ -43,8 +43,8 @@ segmentItems:
         spanType: EXIT
         peer: localhost:18080
         tags:
-          - { key: url, value: 'http://localhost:18080/tomcatserver-10.x-scenario/case/tomcat-10.x-scenario' }
-          - { key: http.method, value: GET }
+        - { key: url, value: 'http://localhost:18080/tomcatserver-10.x-scenario/case/tomcat-10.x-scenario' }
+        - { key: http.method, value: GET }
       skipAnalysis: 'false'
 - serviceName: tomcatserver-10.x-scenario
   segmentSize: 1
@@ -62,12 +62,6 @@ segmentItems:
       spanType: Entry
       peer: ''
       tags:
-        - { key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient' }
-        - { key: http.method, value: GET }
-      refs:
-      - { parentEndpoint: GET:/tomcatclient-10.x-scenario/case/tomcatclient, networkAddress: 'localhost:18080',
-        refType: CrossProcess, parentSpanId: 1, parentTraceSegmentId: not null, parentServiceInstance: not
-        null, parentService: tomcatclient-10.x-scenario, traceId: not null }
+      - { key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient' }
+      - { key: http.method, value: GET }
       skipAnalysis: 'false'
-
-
