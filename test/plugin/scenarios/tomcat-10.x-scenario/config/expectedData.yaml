@@ -13,55 +13,98 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 segmentItems:
 - serviceName: tomcatclient-10.x-scenario
   segmentSize: ge 1
   segments:
   - segmentId: not null
     spans:
+    - operationName: /tomcatserver-10.x-scenario/case/tomcat-10.x-scenario
+      operationId: 0
+      parentSpanId: 0
+      spanId: 1
+      spanLayer: Http
+      startTime: not null
+      endTime: not null
+      componentId: 2
+      isError: false
+      spanType: Exit
+      peer: '18080'
+      skipAnalysis: false
+      tags:
+      - {key: url, value: 'http://127.0.0.1:18080/tomcatserver-10.x-scenario/case/tomcat-10.x-scenario'}
+      - {key: http.method, value: GET}
     - operationName: GET:/tomcatclient-10.x-scenario/case/tomcatclient
+      operationId: 0
       parentSpanId: -1
       spanId: 0
       spanLayer: Http
-      startTime: nq 0
-      endTime: nq 0
+      startTime: not null
+      endTime: not null
       componentId: 1
       isError: false
       spanType: Entry
       peer: ''
+      skipAnalysis: false
       tags:
-      - { key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient' }
-      - { key: http.method, value: GET }
-    - operationName: /tomcatserver-10.x-scenario/case/tomcat-10.x-scenario
-        parentSpanId: 0
-        spanId: 1
-        spanLayer: Http
-        startTime: nq 0
-        endTime: nq 0
-        componentId: 2
-        isError: false
-        spanType: EXIT
-        peer: localhost:18080
-        tags:
-        - { key: url, value: 'http://localhost:18080/tomcatserver-10.x-scenario/case/tomcat-10.x-scenario' }
-        - { key: http.method, value: GET }
-      skipAnalysis: 'false'
-- serviceName: tomcatserver-10.x-scenario
-  segmentSize: 1
-  segments:
-  - segmentId: not null
-    spans:
-    - operationName: /tomcatserver-10.x-scenario/case/tomcat-10.x-scenario
-      parentSpanId: -1
-      spanId: 0
-      spanLayer: Http
-      startTime: nq 0
-      endTime: nq 0
-      componentId: 1
-      isError: false
-      spanType: Entry
-      peer: ''
-      tags:
-      - { key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient' }
-      - { key: http.method, value: GET }
-      skipAnalysis: 'false'
+      - {key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient'}
+      - {key: http.method, value: GET}
+
+
+
+
+
+
+#segmentItems:
+#- serviceName: tomcatclient-10.x-scenario
+#  segmentSize: ge 1
+#  segments:
+#  - segmentId: not null
+#    spans:
+#    - operationName: GET:/tomcatclient-10.x-scenario/case/tomcatclient
+#      parentSpanId: -1
+#      spanId: 0
+#      spanLayer: Http
+#      startTime: nq 0
+#      endTime: nq 0
+#      componentId: 1
+#      isError: false
+#      spanType: Entry
+#      peer: ''
+#      tags:
+#      - { key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient' }
+#      - { key: http.method, value: GET }
+#    - operationName: /tomcatserver-10.x-scenario/case/tomcat-10.x-scenario
+#        parentSpanId: 0
+#        spanId: 1
+#        spanLayer: Http
+#        startTime: nq 0
+#        endTime: nq 0
+#        componentId: 2
+#        isError: false
+#        spanType: EXIT
+#        peer: localhost:18080
+#        tags:
+#        - { key: url, value: 'http://localhost:18080/tomcatserver-10.x-scenario/case/tomcat-10.x-scenario' }
+#        - { key: http.method, value: GET }
+#      skipAnalysis: 'false'
+#- serviceName: tomcatserver-10.x-scenario
+#  segmentSize: 1
+#  segments:
+#  - segmentId: not null
+#    spans:
+#    - operationName: /tomcatserver-10.x-scenario/case/tomcat-10.x-scenario
+#      parentSpanId: -1
+#      spanId: 0
+#      spanLayer: Http
+#      startTime: nq 0
+#      endTime: nq 0
+#      componentId: 1
+#      isError: false
+#      spanType: Entry
+#      peer: ''
+#      tags:
+#      - { key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient' }
+#      - { key: http.method, value: GET }
+#      skipAnalysis: 'false'
