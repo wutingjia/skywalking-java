@@ -30,7 +30,7 @@ segmentItems:
       componentId: 2
       isError: false
       spanType: Exit
-      peer: '18080'
+      peer: '127.0.0.1:18080'
       skipAnalysis: false
       tags:
       - {key: url, value: 'http://127.0.0.1:18080/tomcatserver-10.x-scenario/case/tomcat-10.x-scenario'}
