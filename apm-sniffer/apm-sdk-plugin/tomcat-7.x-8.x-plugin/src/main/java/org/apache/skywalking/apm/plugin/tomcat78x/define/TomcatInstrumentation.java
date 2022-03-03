@@ -51,6 +51,11 @@ public class TomcatInstrumentation extends ClassInstanceMethodsEnhancePluginDefi
     }
 
     @Override
+    protected String[] witnessClasses() {
+        return new String[] {"javax.servlet.ServletRequest"};
+    }
+
+    @Override
     public ConstructorInterceptPoint[] getConstructorsInterceptPoints() {
         return null;
     }

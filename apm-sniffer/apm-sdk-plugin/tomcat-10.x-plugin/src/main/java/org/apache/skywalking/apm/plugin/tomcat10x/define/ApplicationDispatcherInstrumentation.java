@@ -53,6 +53,11 @@ public class ApplicationDispatcherInstrumentation extends ClassInstanceMethodsEn
     }
 
     @Override
+    protected String[] witnessClasses() {
+        return new String[] {"jakarta.servlet.ServletRequest"};
+    }
+
+    @Override
     public InstanceMethodsInterceptPoint[] getInstanceMethodsInterceptPoints() {
         return new InstanceMethodsInterceptPoint[] {
                 new InstanceMethodsInterceptPoint() {
