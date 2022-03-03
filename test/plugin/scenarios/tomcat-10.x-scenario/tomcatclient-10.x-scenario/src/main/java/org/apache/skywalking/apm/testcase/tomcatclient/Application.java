@@ -27,7 +27,6 @@ public class Application {
     public static void main(String[] args) {
         try {
             SpringApplication.run(Application.class, args);
-            System.out.println("success");
         } catch (Exception e) {
             // Never do this
         }

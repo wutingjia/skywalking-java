@@ -25,7 +25,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-
 public class CaseServlet extends HttpServlet {
 
     @Override
