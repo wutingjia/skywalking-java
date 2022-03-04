@@ -50,7 +50,25 @@ segmentItems:
       tags:
       - {key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient'}
       - {key: http.method, value: GET}
-
+- serviceName: tomcatserver-10.x-scenario
+  segmentSize: 1
+  segments:
+  - segmentId: not null
+    spans:
+    - operationName: /tomcatserver-10.x-scenario/case/tomcat-10.x-scenario
+      parentSpanId: -1
+      spanId: 0
+      spanLayer: Http
+      startTime: nq 0
+      endTime: nq 0
+      componentId: 1
+      isError: false
+      spanType: Entry
+      peer: ''
+      tags:
+      - { key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient' }
+      - { key: http.method, value: GET }
+      skipAnalysis: 'false'
 
 
 
@@ -88,23 +106,4 @@ segmentItems:
 #        tags:
 #        - { key: url, value: 'http://localhost:18080/tomcatserver-10.x-scenario/case/tomcat-10.x-scenario' }
 #        - { key: http.method, value: GET }
-#      skipAnalysis: 'false'
-#- serviceName: tomcatserver-10.x-scenario
-#  segmentSize: 1
-#  segments:
-#  - segmentId: not null
-#    spans:
-#    - operationName: /tomcatserver-10.x-scenario/case/tomcat-10.x-scenario
-#      parentSpanId: -1
-#      spanId: 0
-#      spanLayer: Http
-#      startTime: nq 0
-#      endTime: nq 0
-#      componentId: 1
-#      isError: false
-#      spanType: Entry
-#      peer: ''
-#      tags:
-#      - { key: url, value: 'http://localhost:8080/tomcatclient-10.x-scenario/case/tomcatclient' }
-#      - { key: http.method, value: GET }
 #      skipAnalysis: 'false'
