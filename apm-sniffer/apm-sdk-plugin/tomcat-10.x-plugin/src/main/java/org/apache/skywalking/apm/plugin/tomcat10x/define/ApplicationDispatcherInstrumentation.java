@@ -16,7 +16,7 @@
  *
  */
 
-package org.apache.skywalking.apm.plugin.tomcat78x.define;
+package org.apache.skywalking.apm.plugin.tomcat10x.define;
 
 import net.bytebuddy.description.method.MethodDescription;
 import net.bytebuddy.matcher.ElementMatcher;
@@ -33,49 +33,49 @@ public class ApplicationDispatcherInstrumentation extends ClassInstanceMethodsEn
 
     private static final String ENHANCE_CLASS = "org.apache.catalina.core.ApplicationDispatcher";
     private static final String ENHANCE_METHOD = "forward";
-    public static final String INTERCEPTOR_CLASS = "org.apache.skywalking.apm.plugin.tomcat78x.ForwardInterceptor";
+    public static final String INTERCEPTOR_CLASS = "org.apache.skywalking.apm.plugin.tomcat10x.ForwardInterceptor";
 
     @Override
     public ConstructorInterceptPoint[] getConstructorsInterceptPoints() {
         return new ConstructorInterceptPoint[] {
-            new ConstructorInterceptPoint() {
-                @Override
-                public ElementMatcher<MethodDescription> getConstructorMatcher() {
-                    return any();
-                }
+                new ConstructorInterceptPoint() {
+                    @Override
+                    public ElementMatcher<MethodDescription> getConstructorMatcher() {
+                        return any();
+                    }
 
-                @Override
-                public String getConstructorInterceptor() {
-                    return INTERCEPTOR_CLASS;
+                    @Override
+                    public String getConstructorInterceptor() {
+                        return INTERCEPTOR_CLASS;
+                    }
                 }
-            }
         };
     }
 
     @Override
     protected String[] witnessClasses() {
-        return new String[] {"javax.servlet.ServletRequest"};
+        return new String[] {"jakarta.servlet.ServletRequest"};
     }
 
     @Override
     public InstanceMethodsInterceptPoint[] getInstanceMethodsInterceptPoints() {
         return new InstanceMethodsInterceptPoint[] {
-            new InstanceMethodsInterceptPoint() {
-                @Override
-                public ElementMatcher<MethodDescription> getMethodsMatcher() {
-                    return named(ENHANCE_METHOD);
-                }
+                new InstanceMethodsInterceptPoint() {
+                    @Override
+                    public ElementMatcher<MethodDescription> getMethodsMatcher() {
+                        return named(ENHANCE_METHOD);
+                    }
 
-                @Override
-                public String getMethodsInterceptor() {
-                    return INTERCEPTOR_CLASS;
-                }
+                    @Override
+                    public String getMethodsInterceptor() {
+                        return INTERCEPTOR_CLASS;
+                    }
 
-                @Override
-                public boolean isOverrideArgs() {
-                    return false;
+                    @Override
+                    public boolean isOverrideArgs() {
+                        return false;
+                    }
                 }
-            }
         };
     }
 

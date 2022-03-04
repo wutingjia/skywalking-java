@@ -16,7 +16,7 @@
  *
  */
 
-package org.apache.skywalking.apm.plugin.tomcat78x.define;
+package org.apache.skywalking.apm.plugin.tomcat10x.define;
 
 import net.bytebuddy.description.method.MethodDescription;
 import net.bytebuddy.matcher.ElementMatcher;
@@ -38,12 +38,12 @@ public class TomcatInstrumentation extends ClassInstanceMethodsEnhancePluginDefi
     /**
      * The intercept class for "invoke" method in the class "org.apache.catalina.core.StandardHostValve"
      */
-    private static final String INVOKE_INTERCEPT_CLASS = "org.apache.skywalking.apm.plugin.tomcat78x.TomcatInvokeInterceptor";
+    private static final String INVOKE_INTERCEPT_CLASS = "org.apache.skywalking.apm.plugin.tomcat10x.TomcatInvokeInterceptor";
 
     /**
      * The intercept class for "exception" method in the class "org.apache.catalina.core.StandardHostValve"
      */
-    private static final String EXCEPTION_INTERCEPT_CLASS = "org.apache.skywalking.apm.plugin.tomcat78x.TomcatExceptionInterceptor";
+    private static final String EXCEPTION_INTERCEPT_CLASS = "org.apache.skywalking.apm.plugin.tomcat10x.TomcatExceptionInterceptor";
 
     @Override
     protected ClassMatch enhanceClass() {
@@ -52,7 +52,7 @@ public class TomcatInstrumentation extends ClassInstanceMethodsEnhancePluginDefi
 
     @Override
     protected String[] witnessClasses() {
-        return new String[] {"javax.servlet.ServletRequest"};
+        return new String[] {"jakarta.servlet.ServletRequest"};
     }
 
     @Override
@@ -63,38 +63,38 @@ public class TomcatInstrumentation extends ClassInstanceMethodsEnhancePluginDefi
     @Override
     public InstanceMethodsInterceptPoint[] getInstanceMethodsInterceptPoints() {
         return new InstanceMethodsInterceptPoint[] {
-            new InstanceMethodsInterceptPoint() {
-                @Override
-                public ElementMatcher<MethodDescription> getMethodsMatcher() {
-                    return named("invoke");
-                }
+                new InstanceMethodsInterceptPoint() {
+                    @Override
+                    public ElementMatcher<MethodDescription> getMethodsMatcher() {
+                        return named("invoke");
+                    }
 
-                @Override
-                public String getMethodsInterceptor() {
-                    return INVOKE_INTERCEPT_CLASS;
-                }
+                    @Override
+                    public String getMethodsInterceptor() {
+                        return INVOKE_INTERCEPT_CLASS;
+                    }
 
-                @Override
-                public boolean isOverrideArgs() {
-                    return false;
-                }
-            },
-            new InstanceMethodsInterceptPoint() {
-                @Override
-                public ElementMatcher<MethodDescription> getMethodsMatcher() {
-                    return named("throwable");
-                }
+                    @Override
+                    public boolean isOverrideArgs() {
+                        return false;
+                    }
+                },
+                new InstanceMethodsInterceptPoint() {
+                    @Override
+                    public ElementMatcher<MethodDescription> getMethodsMatcher() {
+                        return named("throwable");
+                    }
 
-                @Override
-                public String getMethodsInterceptor() {
-                    return EXCEPTION_INTERCEPT_CLASS;
-                }
+                    @Override
+                    public String getMethodsInterceptor() {
+                        return EXCEPTION_INTERCEPT_CLASS;
+                    }
 
-                @Override
-                public boolean isOverrideArgs() {
-                    return false;
+                    @Override
+                    public boolean isOverrideArgs() {
+                        return false;
+                    }
                 }
-            }
         };
     }
 }
