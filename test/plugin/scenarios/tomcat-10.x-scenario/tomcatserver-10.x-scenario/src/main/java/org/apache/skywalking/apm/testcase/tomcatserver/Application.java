@@ -32,7 +32,9 @@ public class Application {
         tomcat.getService().addConnector(con);
         Context ctx = tomcat.addContext("/tomcatserver-10.x-scenario", null);
         Tomcat.addServlet(ctx, "caseServlet", "org.apache.skywalking.apm.testcase.tomcatserver.servlet.CaseServlet");
+        Tomcat.addServlet(ctx, "healthCheckServlet", "org.apache.skywalking.apm.testcase.tomcatserver.servlet.HealthCheckServlet");
         ctx.addServletMappingDecoded("/case/tomcat-10.x-scenario", "caseServlet");
+        ctx.addServletMappingDecoded("/case/healthCheck", "healthCheckServlet");
         tomcat.start();
     }
 }
